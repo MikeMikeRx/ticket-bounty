@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import clsx from "clsx";
 import {
@@ -20,13 +18,11 @@ import {
 } from "lucide-react";
 import { toCurrencyFromCent } from "@/utils/currency";
 import { TicketMoreMenu } from "./ticket-more-menu";
-import { Comments } from "@/features/comment/components/comments";
-import { CommentWithMetaData } from "@/features/comment/types";
 
 type TicketItemProps = {
     ticket: TicketWithMetadata;
     isDetail?: boolean;
-    comments?: CommentWithMetaData[];
+    comments?: React.ReactNode;
 };
 
 const TicketItem = ({ ticket, isDetail, comments }: TicketItemProps) => {
@@ -103,8 +99,7 @@ const TicketItem = ({ ticket, isDetail, comments }: TicketItemProps) => {
                     )}
                 </div>
             </div>
-
-            {isDetail ? (<Comments ticketId={ticket.id} comments={comments}/>) : null }
+            {comments}
         </div>
     );
 };
