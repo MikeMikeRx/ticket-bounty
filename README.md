@@ -86,7 +86,7 @@ type ActionState<T = any> = {
 **Prerequisites**: Node.js 18+, PostgreSQL (or Supabase)
 
 ```bash
-git clone https://github.com/MikeMikeRx/Ticket-Bounty
+git clone https://github.com/MikeMikeRx/ticket-bounty
 cd ticket-bounty
 npm install
 
