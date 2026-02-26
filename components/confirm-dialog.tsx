@@ -54,14 +54,14 @@ const useConfirmDialog = ({
     );
 
     useActionFeedback(actionState, {
-        onSuccess: ({ actionState }) => {
+        onSuccess: (actionState) => {
             if (actionState.message) {
                 toast.success(actionState.message);
             }
 
             onSuccess?.(actionState);
         },
-        onError: ({ actionState} ) => {
+        onError: (actionState) => {
             if (actionState.message) {
                 toast.error(actionState.message);
             }
