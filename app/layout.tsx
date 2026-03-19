@@ -18,9 +18,23 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const description =
+  'Ticket Bounty is a full-stack ticket management platform where users post tasks or issues with a monetary bounty attached. The idea is simple: describe a problem, set a deadline and a reward (the "bounty"), and track its progress until it\'s resolved.';
+
 export const metadata: Metadata = {
   title: "Ticket Bounty",
-  description: "Ticket Bounty - Next.js application",
+  description,
+  openGraph: {
+    title: "Ticket Bounty",
+    description,
+    images: [{ url: "/logo.jpg" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ticket Bounty",
+    description,
+    images: ["/logo.jpg"],
+  },
 };
 
 export default function RootLayout({
