@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { verifyPassword } from "@/lib/auth/password";
 import { createSession } from "@/lib/auth/session";
-import { setSessionCookie } from "@/lib/auth/cookies";
 import { ticketsPath } from "@/constants/paths";
 
 const DEMO_EMAIL = "visitor@welcome.com";
@@ -23,7 +22,15 @@ export async function GET(request: Request) {
     }
 
     const session = await createSession(user.id);
-    await setSessionCookie(session.id, session.expiresAt);
 
-    return NextResponse.redirect(new URL(ticketsPath(), base));
+    const response = NextResponse.redirect(new URL(ticketsPath(), base));
+    response.cookies.set("session", session.id, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        path: "/",
+        expires: session.expiresAt,
+    });
+
+    return response;
 }
